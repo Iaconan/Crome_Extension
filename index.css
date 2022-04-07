@@ -27,7 +27,11 @@ button {
 }
 
 #delete-btn {
-    background: red;
+    background: rgb(227, 80, 80);
+}
+
+#tab-btn {
+    background: rgb(58, 58, 229);
 }
 
 ul {
