@@ -1,18 +1,38 @@
+let myLeads = [];
 const inputBtn = document.getElementById("input-btn");
-myLeads = ["www","www1","www2",];
 const inputEl = document.getElementById("input-el")
 const ulEl = document.getElementById("ul-el")
+let leadsFromLocalStorage = JSON.parse( localStorage.getItem("myLeads") )
 
+
+if (leadsFromLocalStorage) {
+    myLeads = leadsFromLocalStorage
+    renderLeads()
+}
 
 
 inputBtn.addEventListener( "click", function() {
     myLeads.push(inputEl.value)
-    console.log(myLeads)
+    inputEl.value = ""
+    localStorage.setItem("myLeads", JSON.stringify(myLeads))
+    renderLeads()
+
+    console.log(localStorage.getItem("myLeads"))
 })
 
+function renderLeads() {
+    let listItems = ""
+    for (let i = 0; i < myLeads.length; i++) {
+        listItems += `
+        <li>
+        <a target='_blank' href='${myLeads[i]}'>${myLeads[i]}</a>
+        </li>
+        `
 
-for (let i = 0; i < myLeads.length; i++) {
-    const element = myLeads[i];
-    ulEl.innerHTML += "<li>" + element + "</li> "
-    
+        
+    }
+
+    ulEl.innerHTML = listItems
 }
+
+
